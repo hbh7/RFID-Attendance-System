@@ -1,4 +1,6 @@
 import RPi.GPIO as GPIO
+import sys
+import socketio
 import time
 from mfrc522 import SimpleMFRC522
 
@@ -9,6 +11,7 @@ def read():
         id, text = reader.read()
         print(id)
         print(text)
+        return (id,text)
     finally:
         GPIO.cleanup()
 
@@ -22,8 +25,16 @@ def write(text):
         GPIO.cleanup()
 
 if __name__ == "__main__":
+    if(len(sys.argv) != 2):
+        print("Invalid argument count!")
+        print("Execute as python3 script.py [SERVER_IP]")
+        exit(1)
+    sio = socketio.Client()
+    sio.connect(sys.argv[1])
     write_message = input("Enter message to write to the tag: ")
     write(write_message)
     while True:
-        read()
+        id, text = read()
+        text = text.strip()
+        sio.emit('attend', {'ID': id, 'text': text})
         time.sleep(1)
