@@ -24,6 +24,7 @@ io.on("connection", (client) => {
     client.on("attend", (msg) => {
         console.log(msg);
         console.log("Message received!");
+        io.emit("received", "Text: " + msg.text + " ID: " + msg.ID);
     });
 });
 http.listen(port, () => {

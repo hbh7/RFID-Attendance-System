@@ -7,14 +7,23 @@
     <title>RFID Attendance</title>
 </head>
 <body>
-    <p>Works!</p>
+    <div id="messages">
+
+    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <script>
   let socket = io();
   socket.on('disconnect', (msg) => {
       console.log(msg);
   });
   socket.emit('attend', "Message!");
+  socket.on('received', (msg) => {
+      $("#messages").append("<li>" + msg + "</li>");
+  });
 </script>
 </html>
