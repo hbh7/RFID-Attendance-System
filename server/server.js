@@ -10,11 +10,14 @@ const port = 3000;
 // Security
 var fs = require('fs');
 var options = {
-  key: fs.readFileSync('./file.pem'),
-  cert: fs.readFileSync('./file.crt')
+  key: fs.readFileSync('./server.key'),
+  cert: fs.readFileSync('./server.crt'),
+  requestCert: true,
+  rejectUnauthorized: false
 };
 
 var https = require('https').createServer(options, app);
+
 const io = require('socket.io')(https)
 //
 
