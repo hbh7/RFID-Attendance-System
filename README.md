@@ -13,13 +13,15 @@ https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
 
 Server:
 
-```sudo apt install npm -y
+```bash
+sudo apt install npm -y
 npm start
 ```
 
 Client: 
 
-```sudo apt install python2 python2-pip -y
+```bash
+sudo apt install python2 python2-pip -y
 pip install -U socketIO-client-nexus
 python2 readTag.py https://localhost:3000
 ```
