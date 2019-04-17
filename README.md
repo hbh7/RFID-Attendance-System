@@ -21,7 +21,7 @@ npm start
 Client: 
 
 ```bash
-sudo apt install python2 python2-pip -y
+sudo apt install python python-pip -y
 pip install -U socketIO-client-nexus
 python2 readTag.py https://localhost:3000
 ```
