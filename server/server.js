@@ -2,10 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const http = require('http').createServer(app)
-const io = require('socket.io')(http)
+//const http = require('http').createServer(app)
+//const io = require('socket.io')(http)
 
 const port = 3000;
+
+// Security
+var fs = require('fs');
+var options = {
+  key: fs.readFileSync('./server.key'),
+  cert: fs.readFileSync('./server.crt'),
+  requestCert: true,
+  rejectUnauthorized: false
+};
+
+var https = require('https').createServer(options, app);
+
+const io = require('socket.io')(https)
+//
+
 
 // This parses all the responses to JSON
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +42,6 @@ io.on("connection", (client) => {
         io.emit("received", "Text: " + msg.text + " ID: " + msg.ID);
     });
 });
-http.listen(port, () => {
+https.listen(port,"0.0.0.0", () => {
     console.log("Server started on port: " + port);
 });
