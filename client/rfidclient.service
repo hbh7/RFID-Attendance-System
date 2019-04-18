@@ -1,0 +1,17 @@
+# Place me in /lib/systemd/system/
+# Then do:
+# sudo chmod 644 /lib/systemd/system/rfidclient.service
+# sudo systemctl daemon-reload
+# sudo systemctl enable rfidclient.service
+
+[Unit]
+Description=RFID Attendance System Client
+After=multi-user.target
+
+[Service]
+Type=idle
+WorkingDirectory=/opt/RFID-Attendance-System/client
+ExecStart=/usr/bin/python readTag.py > log.txt 2>&1
+
+[Install]
+WantedBy=multi-user.target

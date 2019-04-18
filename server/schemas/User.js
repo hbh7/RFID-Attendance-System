@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     name: String,
-    rin: {type: Number, unique: true},
-    cardID: {type: Number, required: true}
+    rin: {type: Number},
+    cardID: {type: Number, required: true, unique: true}
 });
 
 const User = mongoose.model('User', userSchema);

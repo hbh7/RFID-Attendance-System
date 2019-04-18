@@ -7,6 +7,7 @@
     <title>RFID Attendance</title>
 </head>
 <body>
+    <h1>Log:</h1>
     <div id="messages">
 
     </div>
@@ -17,13 +18,13 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <script>
-  let socket = io();
+let socket = io();
   socket.on('disconnect', (msg) => {
       console.log(msg);
   });
-  socket.emit('attend', "Message!");
   socket.on('received', (msg) => {
       $("#messages").append("<li>" + msg + "</li>");
   });
+
 </script>
 </html>
