@@ -18,6 +18,7 @@
   "homepage": "https://github.com/hbh7/RFID-Attendance-System#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "mongoose": "^5.5.2",
     "socket.io": "^2.2.0"
   }
 }

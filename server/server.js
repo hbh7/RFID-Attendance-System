@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const mongoose = require('mongoose');
 const app = express();
 //const http = require('http').createServer(app)
 //const io = require('socket.io')(http)
@@ -8,19 +9,24 @@ const app = express();
 const port = 3000;
 
 // Security
-var fs = require('fs');
-var options = {
+const fs = require('fs');
+const options = {
   key: fs.readFileSync('./server.key'),
   cert: fs.readFileSync('./server.crt'),
   requestCert: true,
   rejectUnauthorized: false
 };
 
-var https = require('https').createServer(options, app);
+mongoose.connect("mongodb+srv://admin:<password>@rfid-attendance-4ynzt.mongodb.net/test?retryWrites=true", {useNewUrlParser: true})
+.catch((err) =>{
+    console.error(err);
+    return;
+});
+mongoose.Promise = global.Promise;
+
+const https = require('https').createServer(options, app);
 
 const io = require('socket.io')(https)
-//
-
 
 // This parses all the responses to JSON
 app.use(bodyParser.urlencoded({ extended: true }));
