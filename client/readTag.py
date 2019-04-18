@@ -1,8 +1,8 @@
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import sys
 import time
 import random
-#from mfrc522 import SimpleMFRC522
+from mfrc522 import SimpleMFRC522
 from socketIO_client_nexus import SocketIO
 from socketIO_client_nexus.exceptions import ConnectionError
 import urllib3
@@ -38,26 +38,26 @@ if __name__ == "__main__":
         print("Execute as python3 script.py [Server Address, Ex: https://localhost:3000]")
         exit(1)
 
-    #sio = SocketIO(sys.argv[1], verify='server.crt', cert=('client.crt', 'client.key'))
-
-    idCount = 0
+    #idCount = 0 # For development use
 
     while True:
 
         print("")
 
         # Read from scanner
-        #id = read()
-        if idCount < 3:
-            id = random.randint(10000, 99999) # For development use
-        else:
-            id = ""
+        id = read() # Comment out for development use
+
+        # For development use
+        #if idCount < 3:
+        #    id = random.randint(10000, 99999)
+        #else:
+        #    id = ""
 
         #if idCount > 10:
         #    exit()
-        time.sleep(1)
+        #time.sleep(1)
 
-        idCount = idCount + 1
+        #idCount = idCount + 1 # For development use
 
         # If we got an ID, add it to the queue to transmit if its not already there
         if id != "":
@@ -90,7 +90,7 @@ if __name__ == "__main__":
                     sio.emit('attend', {'ID': id})
                     sio.wait(seconds=1)
 
-                #sio.disconnect()
+                sio.disconnect()
 
             except ConnectionError:
                 print('Server unreachable. Retrying shortly')

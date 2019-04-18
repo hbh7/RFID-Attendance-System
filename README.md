@@ -28,7 +28,7 @@ python2 readTag.py https://localhost:3000
 
 ### Todo
 * Create an enrollment program to allow linking of Card ID’s to user data
-* Caching if server cannot be reached
+* ~~Caching if server cannot be reached~~
 * Support switching which class the controller is recording for
 * Auto starting of program services
 * Connect the enrollment program to an attendance program
