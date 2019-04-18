@@ -37,8 +37,9 @@ io.on("connection", (client) => {
         io.emit('disconnect', "User lost!");
     });
     client.on("attend", (msg) => {
-        console.log(msg);
         console.log("Message received!");
+        console.log(msg);
+        io.emit("response", msg.ID);
     });
 });
 https.listen(port,"0.0.0.0", () => {
