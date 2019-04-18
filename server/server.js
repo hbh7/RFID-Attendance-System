@@ -40,6 +40,7 @@ io.on("connection", (client) => {
         console.log("Message received!");
         console.log(msg);
         io.emit("response", msg.ID);
+        io.emit("received", " ID: " + msg.ID);
     });
 });
 https.listen(port,"0.0.0.0", () => {
