@@ -11,7 +11,7 @@ const app = express();
 //const io = require('socket.io')(http)
 
 const port = 3000;
-
+let currentClass = new Class();
 // Security
 const fs = require('fs');
 const options = {
@@ -21,7 +21,7 @@ const options = {
   rejectUnauthorized: false
 };
 
-mongoose.connect("mongodb+srv://admin:admin@rfid-attendance-4ynzt.mongodb.net/test?retryWrites=true", {useNewUrlParser: true, useCreateIndex: true,})
+mongoose.connect("mongodb+srv://admin:admin@rfid-attendance-4ynzt.mongodb.net/iotproject?retryWrites=true", {useNewUrlParser: true, useCreateIndex: true,})
 .catch((err) =>{
     console.error(err);
     return;
@@ -45,6 +45,26 @@ app.get('/', (req, res) => {
 app.get('/createclass', (req, res) => {
     res.sendFile(path.join(__dirname, 'createclass.html'));
 })
+
+app.get('/attendance', (req, res) => {
+    res.sendFile(path.join(__dirname, 'attendance.html'));
+})
+
+// Gets the current class attendance is being taken for
+app.get('/currentclass/get', (req, res) => {
+    res.send(currentClass);
+});
+
+// Returns a list of classes
+app.get('/class/get', (req, res) => {
+    Class.find({}, (err, classes) => {
+        if(err){
+            res.send("ERROR");
+        }else{
+            res.send(classes);
+        }
+    });
+});
 
 app.post('/class/create', (req, res) => {
     console.log(req.body);
@@ -74,12 +94,27 @@ io.on("connection", (client) => {
         io.emit('disconnect', "User lost!");
     });
     client.on("attend", (msg) => {
-        console.log("Message received!");
-        console.log(msg);
         io.emit("response", msg.ID);
         io.emit("received", " ID: " + msg.ID);
         // We will find a user and if one doesn't exist we will create one
         const usr = UserFunctions.findAndCreate(msg.ID);
+        // If someone has selected a class to record attendance for
+        if (currentClass != null){
+            usr.then((attending_user) => {
+                const current_attendant = new Attendance({class: currentClass, date: Date.now(), user: attending_user});
+                return current_attendant.save();
+            }).catch((err) => console.log(err));
+        }
+    });
+    // This handles what class attendance is currently being taken for
+    client.on("currentclass", (current_class) => {
+        Class.findOne({name: current_class}, (err, found) => {
+            if(err) { console.error(err); }
+            if(found != null){
+                currentClass = found;
+                io.emit("currentclass", current_class);
+            }
+        });
     });
 });
 https.listen(port,"0.0.0.0", () => {
