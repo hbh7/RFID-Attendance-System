@@ -47,7 +47,7 @@ app.get('/createclass', (req, res) => {
 })
 
 app.get('/attendance', (req, res) => {
-    res.sendFile(path.join(__dirname, 'attendance.html'));
+    res.sendFile(path.join(__dirname, 'changeclass.html'));
 })
 
 // Gets the current class attendance is being taken for

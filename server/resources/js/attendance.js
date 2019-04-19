@@ -22,7 +22,7 @@ $(document).ready(() => {
 });
 
 // Whenever the dropdown is changed we want to relay that to the server
-$("#currentclass").change(() => {
+$("#changeclass").click(() => {
     socket.emit("currentclass", $("#currentclass").val());
 });
 
