@@ -44,15 +44,34 @@ app.get('/', (req, res) => {
 
 app.get('/createclass', (req, res) => {
     res.sendFile(path.join(__dirname, 'createclass.html'));
-})
+});
 
-app.get('/attendance', (req, res) => {
+app.get('/changeclass', (req, res) => {
     res.sendFile(path.join(__dirname, 'changeclass.html'));
-})
+});
+
+app.get('/viewattendance', (req, res) => {
+    res.sendFile(path.join(__dirname, 'viewattendance.html'));
+});
 
 // Gets the current class attendance is being taken for
 app.get('/currentclass/get', (req, res) => {
     res.send(currentClass);
+});
+
+app.get('/attendance', (req, res) => {
+    let start = Date.parse(req.query.start);
+    let end = Date.parse(req.query.end);
+    const offset = new Date().getTimezoneOffset() * 60000;
+    start += offset;
+    end += offset;
+    Class.findOne({name: req.query.class})
+    .populate({path: "attendants", populate: {path: "user", model: 'User'}, match: {date: {$gte: start, $lte: end}}})
+    // .populate("attendants")
+    .exec((err, current) => {
+        if(err) { res.send({error: err});}
+        res.send(current.attendants);
+    });
 });
 
 // Returns a list of classes
@@ -97,13 +116,20 @@ io.on("connection", (client) => {
         io.emit("response", msg.ID);
         io.emit("received", " ID: " + msg.ID);
         // We will find a user and if one doesn't exist we will create one
-        const usr = UserFunctions.findAndCreate(msg.ID);
+        const usr = UserFunctions.findAndCreate(msg.ID);;
         // If someone has selected a class to record attendance for
-        if (currentClass != null){
+        if (currentClass['name'] != null){
+            console.log(currentClass);
             usr.then((attending_user) => {
                 const current_attendant = new Attendance({class: currentClass, date: Date.now(), user: attending_user});
                 return current_attendant.save();
-            }).catch((err) => console.log(err));
+            })
+            .then((attendant) => {
+                currentClass.attendants.push(attendant);
+                return currentClass.save();
+            })
+            .then((saved_class) => currentClass = saved_class)
+            .catch((err) => console.log(err));
         }
     });
     // This handles what class attendance is currently being taken for
