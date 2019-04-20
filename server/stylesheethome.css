@@ -1,0 +1,7 @@
+html, body {
+    height: 100%;
+    background-image: url("back1.jpg");
+}
+.btn-primary{
+    background-color: #056355 !important;
+}
