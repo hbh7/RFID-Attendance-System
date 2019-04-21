@@ -66,10 +66,12 @@ app.get('/currentclass/get', (req, res) => {
 app.get('/attendance', (req, res) => {
     let start = Date.parse(req.query.start);
     let end = Date.parse(req.query.end);
-    // Users will enter times in their timezon so we have to convert to UTC
+    // Users will enter times in their timezone so we have to convert to UTC
     const offset = new Date().getTimezoneOffset() * 60000;
-    start += offset;
-    end += offset;
+    console.log(offset);
+    console.log(start);
+    start -= offset;
+    end -= offset;
     Class.findOne({name: req.query.class})
     .populate({path: "attendants", populate: {path: "user", model: 'User'}, match: {date: {$gte: start, $lte: end}}})
     // .populate("attendants")
@@ -121,11 +123,11 @@ io.on("connection", (client) => {
         io.emit("response", msg.ID);
         io.emit("received", " ID: " + msg.ID);
         // We will find a user and if one doesn't exist we will create one
-        const usr = UserFunctions.findAndCreate(msg.ID);;
+        const usr = UserFunctions.findAndCreate(msg.ID);
         // If someone has selected a class to record attendance for
         if (currentClass['name'] != null){
-            console.log(currentClass);
             usr.then((attending_user) => {
+                console.log(attending_user);
                 const current_attendant = new Attendance({class: currentClass, date: Date.now(), user: attending_user});
                 return current_attendant.save();
             })
