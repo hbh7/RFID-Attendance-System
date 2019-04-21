@@ -5,3 +5,17 @@ html, body {
 .btn-primary{
     background-color: #056355 !important;
 }
+.btn-secondary{
+    background-color: #056355 !important;
+    height: 45%;
+    width: 75%;    
+}
+.btn-custom{
+    background-color: #81e6c4 !important;
+    color: rgb(0, 0, 0);
+    border: rgb(0, 0, 0);
+
+}   
+.display-3 {
+    color: #050b63;
+}
