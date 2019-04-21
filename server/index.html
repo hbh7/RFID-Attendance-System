@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RFID Attendance</title>
+  <title>RFID Attendance System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./resources/homeicon.png">
+  <title>Welcome!</title>
+  <link rel="stylesheet" type="text/css" href="./resources/css/stylesheethome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Log:</h1>
-    <div id="messages">
-
+  <div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+      <h1 class="display-3">RFID Attendance System</h1>
+      <p>Press a button below to get started!</p>
+      <button type="button" class="btn btn-primary" id="take">Take Attendance</button>
+      <button type="button" class="btn btn-primary">View Statistics</button>
+      <button type="button" class="btn btn-primary">View Server Log</button>
+      <button type="button" class="btn btn-primary">Learn More About This Project</button>
     </div>
+  </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script>
-let socket = io();
-  socket.on('disconnect', (msg) => {
-      console.log(msg);
-  });
-  socket.on('received', (msg) => {
-      $("#messages").append("<li>" + msg + "</li>");
-  });
-
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </html>

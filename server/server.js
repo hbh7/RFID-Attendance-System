@@ -42,6 +42,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/log', (req, res) => {
+    res.sendFile(path.join(__dirname, 'log.html'));
+});
+
 app.get('/createclass', (req, res) => {
     res.sendFile(path.join(__dirname, 'createclass.html'));
 });
@@ -62,6 +66,7 @@ app.get('/currentclass/get', (req, res) => {
 app.get('/attendance', (req, res) => {
     let start = Date.parse(req.query.start);
     let end = Date.parse(req.query.end);
+    // Users will enter times in their timezon so we have to convert to UTC
     const offset = new Date().getTimezoneOffset() * 60000;
     start += offset;
     end += offset;
@@ -141,6 +146,9 @@ io.on("connection", (client) => {
                 io.emit("currentclass", current_class);
             }
         });
+    });
+    client.on("enroll", (enrollment_data) => {
+        const usr = UserFunctions.findAndEnroll(enrollment_data.Name, enrollment_data.RIN, enrollment_data.ID);
     });
 });
 https.listen(port,"0.0.0.0", () => {

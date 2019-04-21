@@ -57,12 +57,12 @@ function constructTable(data){
         if (attendant.user.name == ""){
             table += "<td>Unenrolled User</td>";
         }else{
-            table += "<td>" + attendant.name + "</td>";
+            table += "<td>" + attendant.user.name + "</td>";
         }
         if (attendant.user.rin == null){
             table += "<td>Unenrolled User</td>";
         }else{
-            table += "<td>" + attendant.rin + "</td>";
+            table += "<td>" + attendant.user.rin + "</td>";
         }
         table += "</tr>"
     }
