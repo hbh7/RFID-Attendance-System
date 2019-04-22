@@ -125,7 +125,6 @@ io.on("connection", (client) => {
     });
     client.on("attend", (msg) => {
         io.emit("response", msg.ID);
-        io.emit("received", " ID: " + msg.ID);
         // We will find a user and if one doesn't exist we will create one
         const usr = UserFunctions.findAndCreate(msg.ID);
         // If someone has selected a class to record attendance for
@@ -153,9 +152,14 @@ io.on("connection", (client) => {
             }
         });
     });
+
     client.on("enroll", (enrollment_data) => {
         const usr = UserFunctions.findAndEnroll(enrollment_data.Name, enrollment_data.RIN, enrollment_data.ID);
     });
+    // Use this to emit to the server log
+    client.on("log", (msg) => {
+        io.emit("log", msg);
+    })
 });
 https.listen(port,"0.0.0.0", () => {
     console.log("Server started on port: " + port);

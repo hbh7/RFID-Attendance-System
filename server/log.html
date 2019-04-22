@@ -28,7 +28,7 @@ let socket = io();
   socket.on('disconnect', (msg) => {
       console.log(msg);
   });
-  socket.on('received', (msg) => {
+  socket.on('log', (msg) => {
       $("#messages").append("<li>" + msg + "</li>");
   });
 

@@ -19,13 +19,15 @@ $(document).ready(() => {
         }
     })
     .catch((err) => console.log(err));
+    $(".alert").hide();
 });
 
-// Whenever the dropdown is changed we want to relay that to the server
+// Whenever the button is clicked we want to relay that to the server
 $("#changeclass").click(() => {
     var name = $("#currentclass").val();
     socket.emit("currentclass", $("#currentclass").val());
-    $('.parent').append(`<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! ${name} was selected.</div>`)
+    $(".alert").show().html("<p>Now recording attendance for: " + name + "</p>");
+    socket.emit("log", `Now recording attendance for: ${name}`);
 });
 
 socket.on("currentclass", (msg) => {
