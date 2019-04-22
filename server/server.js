@@ -104,17 +104,17 @@ app.post('/class/create', (req, res) => {
             if(class_found == null){
                 return new_class.save();
             }else{
-                res.send("Class already made!");
+                res.send({msg: "Class already made!"});
             }
         })
         .then((newc) =>{
-            res.sendFile(path.join(__dirname, 'changeclass.html'));
+            res.send({msg: "Class successfully created!"});
         })
         .catch((err) => {
             console.error(err);
         })
     }else{
-        res.send("Bad request!");
+        res.send({msg:"Bad request!"});
     }
 });
 
