@@ -15,6 +15,10 @@ $("#view-attendance").click(() => {
     const start = $("#begin-time").val();
     const end = $("#end-time").val();
     const selected_class = $("#class").val();
+    if (start == null || end == null || start == "" || end == ""){
+        alert("Please enter a time with the date!");
+        return;
+    }
     if (start > end){
         alert("Start time must be before end time!");
         return;
