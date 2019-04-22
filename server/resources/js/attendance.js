@@ -23,7 +23,9 @@ $(document).ready(() => {
 
 // Whenever the dropdown is changed we want to relay that to the server
 $("#changeclass").click(() => {
+    var name = $("#currentclass").val();
     socket.emit("currentclass", $("#currentclass").val());
+    $('.parent').append(`<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! ${name} was selected.</div>`)
 });
 
 socket.on("currentclass", (msg) => {

@@ -8,7 +8,7 @@ html, body {
 .btn-secondary{
     background-color: #056355 !important;
     height: 45%;
-    width: 75%;    
+    width: 75%;
 }
 .btn-custom{
     background-color: #81e6c4 !important;
@@ -17,5 +17,14 @@ html, body {
 
 }   
 .display-3 {
+    color: #050b63;
+}
+
+.card-title {
+    color: #050b63;
+    font-display: 50px;
+}
+
+.card-text {
     color: #050b63;
 }
