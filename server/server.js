@@ -46,6 +46,10 @@ app.get('/log', (req, res) => {
     res.sendFile(path.join(__dirname, 'log.html'));
 });
 
+app.get('/menu', (req, res) => {
+    res.sendFile(path.join(__dirname, 'menu.html'));
+});
+
 app.get('/createclass', (req, res) => {
     res.sendFile(path.join(__dirname, 'createclass.html'));
 });
@@ -100,11 +104,11 @@ app.post('/class/create', (req, res) => {
             if(class_found == null){
                 return new_class.save();
             }else{
-                res.send(class_found);
+                res.send("Class already made!");
             }
         })
         .then((newc) =>{
-            res.send(newc);
+            res.sendFile(path.join(__dirname, 'changeclass.html'));
         })
         .catch((err) => {
             console.error(err);
