@@ -54,7 +54,7 @@ function constructTable(data){
     </thead>
     <tbody>`;
     if(data.length == 0){
-        return "No users have attendanded during this time period :(";
+        return "<div class='alert alert-danger mx-auto text-center' id='nonefound'><p><strong>No users have attended during this time period!</strong></p></div>";
     }
     for(const attendant of data) {
         table += '<tr>'

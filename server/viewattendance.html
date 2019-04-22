@@ -12,18 +12,19 @@
 </head>
 <body>
     <a href="/" class="btn btn-lg btn-custom" role="button">Return to Home</a>
-    <div class="card border-dark mb-3 mx-auto" style="max-width: 70rem;">
+    <div id="calendarcard" class="card border-dark mb-3 mx-auto">
     <form>
         <!---Error: entering just a date and no times-->
-        <label for="begin-time">Choose a starting time:</label>
+        <label class="time" for="begin-time"><strong>Choose a starting time:</strong></label>
         <input type="datetime-local" id="begin-time"/>
-        <br>
-        <label for="end-time">Choose an end time:</label>
+        <label class="time" for="end-time"><strong>Choose an end time:</strong></label>
         <input type="datetime-local" id="end-time"/>
-        <br>
-        <label for="choose-class">Choose a class:</label>
-        <select id="class"></select>
-        <button id="view-attendance" type="button">View class attendance</button>
+        <div class="text-center">
+            <label class="time" for="choose-class"><strong>Choose a class:</strong></label>
+            <select id="class"></select>
+            <br>
+            <button class="btn btn-primary" id="view-attendance" type="button">View class attendance</button>
+        </div>
     </form>
     </div>
     <div id="info"></div>

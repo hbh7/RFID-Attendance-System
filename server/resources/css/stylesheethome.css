@@ -28,3 +28,20 @@ html, body {
 .card-text {
     color: #050b63;
 }
+
+#nonefound{
+    width: 50%;
+}
+
+.time {
+    color: #050b63;
+}
+
+#calendarcard {
+    max-width: 55rem; 
+    padding: 1%;
+}
+
+#logcard {
+    max-width: 75rem;
+}
