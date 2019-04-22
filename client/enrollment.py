@@ -2,7 +2,7 @@ from socketIO_client_nexus import SocketIO
 import sys
 
 import urllib3
-# import readTag
+import readTag
 urllib3.disable_warnings()
 if len(sys.argv) != 2:
     print("Invalid argument count!")
@@ -27,14 +27,14 @@ while (True):
     if len(rin) != 9:
         print("Please enter a RIN of 9 digits. Try again.")
         continue
-    print("Please Scan Card.")
-    # Read card
-    # id = readTag.read()
-    id = int(input("Enter ID: "))
     try:
         rin = int(rin)
     except:
         print("Please enter a RIN that consists of only numbers. Try again.")
         continue
+    print("Please Scan Card.")
+    # Read card
+    id = readTag.read()
+    # id = int(input("Enter ID: "))
     # transmit the data
     socketIO.emit('enroll', {'Name' : name, 'RIN' : rin, 'ID' : id}) 

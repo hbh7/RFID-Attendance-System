@@ -72,8 +72,6 @@ app.get('/attendance', (req, res) => {
     let end = Date.parse(req.query.end);
     // Users will enter times in their timezone so we have to convert to UTC
     const offset = new Date().getTimezoneOffset() * 60000;
-    console.log(offset);
-    console.log(start);
     start -= offset;
     end -= offset;
     Class.findOne({name: req.query.class})
