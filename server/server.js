@@ -99,6 +99,7 @@ app.post('/class/create', (req, res) => {
                 return new_class.save();
             }else{
                 res.send({msg: "Class already made!"});
+                return;
             }
         })
         .then((newc) =>{
