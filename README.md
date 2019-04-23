@@ -43,6 +43,7 @@ Then reboot or run `sudo systemctl start rfid<client,server>`
 ### Server
 ```
 cd /opt/RFID-Attendance-System/server
+npm install
 npm start
 ```
 
