@@ -70,10 +70,6 @@ app.get('/currentclass/get', (req, res) => {
 app.get('/attendance', (req, res) => {
     let start = Date.parse(req.query.start);
     let end = Date.parse(req.query.end);
-    // Users will enter times in their timezone so we have to convert to UTC
-    const offset = new Date().getTimezoneOffset() * 60000;
-    start -= offset;
-    end -= offset;
     Class.findOne({name: req.query.class})
     .populate({path: "attendants", populate: {path: "user", model: 'User'}, match: {date: {$gte: start, $lte: end}}})
     // .populate("attendants")
