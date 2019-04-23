@@ -51,13 +51,3 @@ npm start
 cd /opt/RFID-Attendance-System/client
 python readTag.py https://localhost:3000
 ```
-
-### Todo
-* ~~Create an enrollment program to allow linking of Card ID’s to user data~~
-* ~~Caching if server cannot be reached~~
-* ~~Support switching which class the controller is recording for~~
-* ~~Auto starting of program services~~
-* ~~Connect the enrollment program to an attendance program~~
-* ~~Run a Node.JS server and MongoDB on the server Pi to allow the owner to view the attendance data~~
-* Design the interface for these programs
-* ~~Research and implement more secure data transfer methods from the client to server~~
