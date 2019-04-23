@@ -9,6 +9,7 @@ import urllib3
 urllib3.disable_warnings()
 import ssl
 ssl.match_hostname = lambda cert, hostname: True
+import threading
 
 # Array of IDs to transmit
 queue = []
@@ -32,42 +33,9 @@ def on_response(*args):
     queue.remove(args[0])
     print("New Queue: " + str(queue))
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Invalid argument count!")
-        print("Execute as python3 script.py [Server Address, Ex: https://localhost:3000]")
-        exit(1)
-
-    #idCount = 0 # For development use
-
-    while True:
-
-        print("")
-
-        # Read from scanner
-        id = read() # Comment out for development use
-
-        # For development use
-        #if idCount < 3:
-        #    id = random.randint(10000, 99999)
-        #else:
-        #    id = ""
-
-        #if idCount > 10:
-        #    exit()
-        #time.sleep(1)
-
-        #idCount = idCount + 1 # For development use
-
-        # If we got an ID, add it to the queue to transmit if its not already there
-        if id != "":
-            print("Got ID: " + str(id))
-            if id not in queue:
-                queue.append(id)
-            time.sleep(1)
-
-        print("Queue: " + str(queue))
-
+def transmit():
+    while True: 
+        time.sleep(1)
         # If there's something to transmit, make a connection and sent it out
         if(len(queue) > 0):
 
@@ -94,5 +62,30 @@ if __name__ == "__main__":
 
             except ConnectionError:
                 print('Server unreachable. Retrying shortly')
+    
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Invalid argument count!")
+        print("Execute as python3 script.py [Server Address, Ex: https://localhost:3000]")
+        exit(1)
+
+
+	threading.Thread(target=transmit).start()
+
+    while True:
+    
+       
+        # Read from scanner
+        id = read() 
+
+        # If we got an ID, add it to the queue to transmit if its not already there
+        if id != "":
+            print("Got ID: " + str(id))
+            if id not in queue:
+                queue.append(id)
+            time.sleep(1)
+
+        print("Queue: " + str(queue))
 
 
