@@ -1,11 +1,19 @@
+$(document).ready(() => {
+    $(".alertsuccess").hide();
+    $(".alertfail").hide();
+});
+
 $("#create").click(() => {
     if ($("#classname").val() == ""){
-        alert("Please enter a name!");
+        $(".alertsuccess").hide();
+        $(".alertfail").show().html("Please enter a name!");
         return;
     }
     let formData = {
         name: $("#classname").val()
     };
+    $(".alertfail").hide();
+    $(".alertsuccess").show().html("Successfully created the class/event "+$("#classname").val()+".");
     fetch("/class/create", {
         method: 'POST',
         headers: {
@@ -18,5 +26,6 @@ $("#create").click(() => {
     }).then((data) => {
         console.log(data);
     })
+    
     .catch((err) => console.log(err));
 });

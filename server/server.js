@@ -103,8 +103,10 @@ app.post('/class/create', (req, res) => {
             }
         })
         .then((newc) =>{
-            res.send({msg: "Class successfully created!"});
-			io.emit("log", "Class Creation - Name: " + req.body.name);
+            if (newc != null) {
+                res.send({msg: "Class successfully created!"});
+                io.emit("log", "Class Creation - Name: " + req.body.name);
+            }
         })
         .catch((err) => {
             console.error(err);
