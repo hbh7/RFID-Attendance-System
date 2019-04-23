@@ -48,7 +48,7 @@ def transmit():
 
                 print("Connected")
 
-                sio.on('disconnect', on_disconnect)
+                #sio.on('disconnect', on_disconnect)
                 sio.on('response', on_response)
 
                 queue2 = queue[:] # Copy the list to resolve a bug in how the for loop works
@@ -58,7 +58,7 @@ def transmit():
                     sio.emit('attend', {'ID': id})
                     sio.wait(seconds=1)
 
-                sio.disconnect()
+                #sio.disconnect()
 
             except ConnectionError:
                 print('Server unreachable. Retrying shortly')
