@@ -26,7 +26,6 @@ sudo apt install npm -y
 sudo apt install python python-pip -y
 pip install -U socketIO-client-nexus
 ```
-(are other libraries needed?)
 
 ### Auto start
 Note: Replace <client,server> with just `client` or `server` 
@@ -43,6 +42,7 @@ Then reboot or run `sudo systemctl start rfid<client,server>`
 ### Server
 ```
 cd /opt/RFID-Attendance-System/server
+npm install
 npm start
 ```
 
