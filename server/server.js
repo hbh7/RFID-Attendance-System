@@ -103,6 +103,7 @@ app.post('/class/create', (req, res) => {
         })
         .then((newc) =>{
             res.send({msg: "Class successfully created!"});
+			io.emit("log", "Class Creation - Name: " + req.body.name);
         })
         .catch((err) => {
             console.error(err);
@@ -118,6 +119,7 @@ io.on("connection", (client) => {
         io.emit('disconnect', "User lost!");
     });
     client.on("attend", (msg) => {
+		io.emit("log", "Attendance - ID: " + msg.ID);
         io.emit("response", msg.ID);
         // We will find a user and if one doesn't exist we will create one
         const usr = UserFunctions.findAndCreate(msg.ID);
@@ -149,6 +151,7 @@ io.on("connection", (client) => {
 
     client.on("enroll", (enrollment_data) => {
         const usr = UserFunctions.findAndEnroll(enrollment_data.Name, enrollment_data.RIN, enrollment_data.ID);
+		io.emit("log", "Enrollment - Name: " + enrollment_data.Name + ", RIN: " + enrollment_data.RIN + ", ID: " + enrollment_data.ID);
     });
     // Use this to emit to the server log
     client.on("log", (msg) => {

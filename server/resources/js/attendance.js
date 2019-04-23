@@ -27,7 +27,7 @@ $("#changeclass").click(() => {
     var name = $("#currentclass").val();
     socket.emit("currentclass", $("#currentclass").val());
     $(".alert").show().html("<p>Now recording attendance for: " + name + "</p>");
-    socket.emit("log", `Now recording attendance for: ${name}`);
+    socket.emit("log", "Class Change - Recording attendance for: " + name);
 });
 
 socket.on("currentclass", (msg) => {
