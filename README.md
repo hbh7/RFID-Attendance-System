@@ -3,6 +3,12 @@ RPI IOT 2019 Project
 
 [Project Proposal](https://docs.google.com/document/d/1QlV8jkIaQD0IFdyguDEGK3X-7NJBnk0Imp9yfcRr-jM)
 
+[Project Report](https://docs.google.com/document/d/1MVh86sENZA63KUcEPyudZ9ziYle52TU5895DU6lo0wY)
+
+[Project Presentation](https://docs.google.com/presentation/d/1m9XJFW8bkhJsVsQTPrCpTju1YnRacUaGdGXR3bsrzzA)
+
+[Project Video Slides](https://docs.google.com/presentation/d/1xig2hnh-L0SonDRfg-ST6hbTqF02yJ9MUi7loEFSaC8)
+
 ## Resources used
 
 https://github.com/nexus-devs/socketIO-client-2.0.3
