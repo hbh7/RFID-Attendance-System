@@ -1,13 +1,25 @@
 # RFID-Attendance-System
 RPI IOT 2019 Project
 
-[Project Proposal](https://docs.google.com/document/d/1QlV8jkIaQD0IFdyguDEGK3X-7NJBnk0Imp9yfcRr-jM)
+The RFID Attendance System provides an easy way to record classroom or event attendance using student RFID badges and Raspberry Pis. 
 
-[Project Report](https://docs.google.com/document/d/1MVh86sENZA63KUcEPyudZ9ziYle52TU5895DU6lo0wY)
+Features:
+- Client / server and web-based architecture. 
+- Backend server system uses Node.js and MongoDB.
+- Python client to interact with the RFID reader and send data to the server. 
+- Web interface to view recorded attendances.
 
-[Project Presentation](https://docs.google.com/presentation/d/1m9XJFW8bkhJsVsQTPrCpTju1YnRacUaGdGXR3bsrzzA)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Hardware.png" width="50%" title="Hardware Info" alt="Hardware Info">
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Web.png" width="50%" title="Web UI Screenshot" alt="Web UI Screenshot">
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Schematic.png" width="50%" title="Schematic" alt="Schematic">
+</p>
 
-[Project Video Slides](https://docs.google.com/presentation/d/1xig2hnh-L0SonDRfg-ST6hbTqF02yJ9MUi7loEFSaC8)
+[Project Report](resources/Report.pdf)
 
 ## Resources used
 
