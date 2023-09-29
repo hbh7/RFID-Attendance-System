@@ -9,17 +9,18 @@ Features:
 - Python client to interact with the RFID reader and send data to the server. 
 - Web interface to view recorded attendances.
 
+[Project Report](resources/Report.pdf)
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Hardware.png" width="50%" title="Hardware Info" alt="Hardware Info">
+  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Hardware.jpg" width="85%" title="Hardware Info" alt="Hardware Info">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Web.png" width="50%" title="Web UI Screenshot" alt="Web UI Screenshot">
+  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Web.jpg" width="85%" title="Web UI Screenshot" alt="Web UI Screenshot">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Schematic.png" width="50%" title="Schematic" alt="Schematic">
+  <img src="https://raw.githubusercontent.com/hbh7/RFID-Attendance-System/master/resources/Schematic.jpg" width="85%" title="Schematic" alt="Schematic">
 </p>
 
-[Project Report](resources/Report.pdf)
 
 ## Resources used
 
